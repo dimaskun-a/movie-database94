@@ -10,17 +10,17 @@ function Hero() {
   // membuat state movie
   const [movie, setMovie] = useState("");
 
+  useEffect(() => {
   async function fetchMovie() {
-    // melakukan side effect: fetch data movie (api) 
-    const respone = await fetch("https://www.omdbapi.com/?apikey=fcf50ae6&i=tt2975590");
+    const url = "https://www.omdbapi.com/?apikey=fcf50ae6&i=tt2975590";
 
-    const data = await respone.json();
+    const response = await fetch(url);
+    const data = await response.json();
 
-    // set movie dengan data movie hasil fetch
     setMovie(data);
   }
-
-  useEffect(fetchMovie, []);
+  fetchMovie();
+}, [])
 
   // menampilkan state movie
   console.log(movie);
